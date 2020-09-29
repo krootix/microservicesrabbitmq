@@ -8,16 +8,16 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-public class App {
+public class ConsumerRuEnApp {
 
     public final Consumer consumer;
 
     @Autowired
-    public App(Consumer consumer) {
+    public ConsumerRuEnApp(Consumer consumer) {
         this.consumer = consumer;
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
+        SpringApplication.run(ConsumerRuEnApp.class, args);
     }
 }

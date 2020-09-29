@@ -9,17 +9,17 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-public class App implements CommandLineRunner {
+public class ProducerApp implements CommandLineRunner {
 
     public final Producer producer;
 
     @Autowired
-    public App(Producer producer) {
+    public ProducerApp(Producer producer) {
         this.producer = producer;
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
+        SpringApplication.run(ProducerApp.class, args);
     }
 
     @Override

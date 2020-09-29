@@ -1,19 +1,20 @@
-package com.krootix.model;
+package com.krootix.common.model;
 
 import java.math.BigDecimal;
 
-public class ExchangeRateRuEn extends AbstractExchangeRate {
+public class ExchangeRateRu extends AbstractExchangeRateRu {
 
     private String name;
 
-    public ExchangeRateRuEn(){}
+    public ExchangeRateRu() {
+    }
 
-    public ExchangeRateRuEn(String name) {
+    public ExchangeRateRu(String name) {
         super();
         this.name = name;
     }
 
-    public ExchangeRateRuEn(String name, BigDecimal rate) {
+    public ExchangeRateRu(String name, BigDecimal rate) {
         super(rate);
         this.name = name;
     }

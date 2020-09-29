@@ -1,11 +1,11 @@
-package com.krootix.service;
+package com.krootix.common.service;
 
-import com.krootix.model.ExchangeRate;
+import com.krootix.common.model.ExchangeRate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 
-public class ExchangeRateHolderImpl implements ExchangeRateHolder {
+public class ExchangeRateHolderImpl implements ExchangeRateHolder<BigDecimal> {
 
     private ExchangeRate<BigDecimal> rate;
 

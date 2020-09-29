@@ -1,11 +1,11 @@
 package com.krootix.config;
 
-import com.krootix.model.ExchangeRate;
-import com.krootix.model.ExchangeRateRuEn;
-import com.krootix.service.ExchangeRateGenerator;
-import com.krootix.service.ExchangeRateGeneratorImpl;
-import com.krootix.service.ExchangeRateHolder;
-import com.krootix.service.ExchangeRateHolderImpl;
+import com.krootix.common.model.ExchangeRate;
+import com.krootix.common.model.ExchangeRateRu;
+import com.krootix.common.service.ExchangeRateGenerator;
+import com.krootix.common.service.ExchangeRateGeneratorImpl;
+import com.krootix.common.service.ExchangeRateHolder;
+import com.krootix.common.service.ExchangeRateHolderImpl;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.math.BigDecimal;
 
-import static com.krootix.model.AbstractExchangeRate.Names.RU_EN;
+import static com.krootix.common.model.AbstractExchangeRateRu.Names.RU_EN;
 
 @Configuration
 public class AppConfig {
@@ -65,7 +65,7 @@ public class AppConfig {
 
     @Bean
     ExchangeRateHolder ExchangeRateHolder() {
-        ExchangeRate<BigDecimal> exchangeRate = new ExchangeRateRuEn(RU_EN.name(), BigDecimal.valueOf(78.9));
+        ExchangeRate<BigDecimal> exchangeRate = new ExchangeRateRu(RU_EN.name(), BigDecimal.valueOf(78.9));
         return new ExchangeRateHolderImpl(exchangeRate);
     }
 
@@ -76,7 +76,7 @@ public class AppConfig {
 
     @Bean
     ExchangeRate<BigDecimal> exchangeRate() {
-        return new ExchangeRateRuEn(RU_EN.name(), BigDecimal.valueOf(0));
+        return new ExchangeRateRu(RU_EN.name(), BigDecimal.valueOf(0));
     }
 
     @Bean

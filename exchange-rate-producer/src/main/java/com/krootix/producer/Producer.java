@@ -1,8 +1,8 @@
 package com.krootix.producer;
 
+import com.krootix.common.service.ExchangeRateGenerator;
+import com.krootix.common.service.ExchangeRateHolder;
 import com.krootix.config.AppConfig;
-import com.krootix.service.ExchangeRateGenerator;
-import com.krootix.service.ExchangeRateHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -10,10 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
+import static com.krootix.common.model.AbstractExchangeRateRu.Names.RU_EN;
+import static com.krootix.common.model.AbstractExchangeRateRu.Names.RU_EU;
 import static com.krootix.config.AppConfig.ROUTING_KEY_EN;
 import static com.krootix.config.AppConfig.ROUTING_KEY_EU;
-import static com.krootix.model.AbstractExchangeRate.Names.RU_EN;
-import static com.krootix.model.AbstractExchangeRate.Names.RU_EU;
+
 
 @Component
 public class Producer {
@@ -21,11 +24,11 @@ public class Producer {
     private static final Logger logger = LoggerFactory.getLogger(Producer.class);
 
     private final RabbitTemplate rabbitTemplate;
-    private final ExchangeRateHolder exchangeRateHolder;
-    private final ExchangeRateGenerator exchangeRateGenerator;
+    private final ExchangeRateHolder<BigDecimal> exchangeRateHolder;
+    private final ExchangeRateGenerator<BigDecimal> exchangeRateGenerator;
 
     @Autowired
-    public Producer(RabbitTemplate rabbitTemplate, ExchangeRateHolder exchangeRateHolder, ExchangeRateGenerator exchangeRateGenerator) {
+    public Producer(RabbitTemplate rabbitTemplate, ExchangeRateHolder<BigDecimal> exchangeRateHolder, ExchangeRateGenerator<BigDecimal> exchangeRateGenerator) {
         this.rabbitTemplate = rabbitTemplate;
         this.exchangeRateHolder = exchangeRateHolder;
         this.exchangeRateGenerator = exchangeRateGenerator;

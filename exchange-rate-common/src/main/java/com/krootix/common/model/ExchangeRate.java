@@ -1,4 +1,4 @@
-package com.krootix.model;
+package com.krootix.common.model;
 
 import java.math.BigDecimal;
 

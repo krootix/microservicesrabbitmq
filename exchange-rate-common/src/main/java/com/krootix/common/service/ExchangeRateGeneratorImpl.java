@@ -1,7 +1,8 @@
-package com.krootix.service;
+package com.krootix.common.service;
 
-import com.krootix.model.AbstractExchangeRate;
-import com.krootix.model.ExchangeRateRuEn;
+import com.krootix.common.model.AbstractExchangeRateRu;
+import com.krootix.common.model.ExchangeRate;
+import com.krootix.common.model.ExchangeRateRu;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,15 +13,15 @@ import java.util.concurrent.ThreadLocalRandom;
 
 //@Component
 //@Configurable
-public class ExchangeRateGeneratorImpl implements ExchangeRateGenerator {
+public class ExchangeRateGeneratorImpl implements ExchangeRateGenerator<BigDecimal> {
 
-    private static final List<AbstractExchangeRate.Names> VALUES =
-            List.of(AbstractExchangeRate.Names.values());
+    private static final List<AbstractExchangeRateRu.Names> VALUES =
+            List.of(AbstractExchangeRateRu.Names.values());
 
     private static final int SIZE = VALUES.size();
     private static final Random RANDOM = new Random();
 
-    public static AbstractExchangeRate.Names randomName()  {
+    public static AbstractExchangeRateRu.Names randomName() {
         return VALUES.get(RANDOM.nextInt(SIZE));
     }
 
@@ -35,20 +36,14 @@ public class ExchangeRateGeneratorImpl implements ExchangeRateGenerator {
     }
 
     @Override
-//    @Autowired
-    public ExchangeRateRuEn generate() {
+    public ExchangeRate generate() {
         logger.info("generating rate");
-//        Random random = new Random();
         double random = ThreadLocalRandom.current().nextDouble(min, max);
         double roundOff = Math.round(random * 100.0) / 100.0;
-//        double roundOff = Math.round((max - min) * 100.0) / 100.0;
-
-//        double random = ThreadLocalRandom.current().nextDouble(min, max);
         BigDecimal value = BigDecimal.valueOf(roundOff);
 
         logger.info("rate has been generated with value: {}", value);
 
-        return new ExchangeRateRuEn(randomName().name(), value);
+        return new ExchangeRateRu(randomName().name(), value);
     }
-
 }

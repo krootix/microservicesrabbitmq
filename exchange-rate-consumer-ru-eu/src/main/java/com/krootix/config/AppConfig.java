@@ -1,11 +1,11 @@
 package com.krootix.config;
 
-import com.krootix.model.ExchangeRate;
-import com.krootix.model.ExchangeRateRuEu;
-import com.krootix.service.ExchangeRateGenerator;
-import com.krootix.service.ExchangeRateGeneratorImpl;
-import com.krootix.service.ExchangeRateHolder;
-import com.krootix.service.ExchangeRateHolderImpl;
+import com.krootix.common.model.ExchangeRate;
+import com.krootix.common.model.ExchangeRateRu;
+import com.krootix.common.service.ExchangeRateGenerator;
+import com.krootix.common.service.ExchangeRateGeneratorImpl;
+import com.krootix.common.service.ExchangeRateHolder;
+import com.krootix.common.service.ExchangeRateHolderImpl;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.math.BigDecimal;
 
-import static com.krootix.model.AbstractExchangeRate.Names.RU_EU;
+import static com.krootix.common.model.AbstractExchangeRateRu.Names.RU_EU;
 
 @Configuration
 public class AppConfig {
@@ -64,19 +64,19 @@ public class AppConfig {
     }
 
     @Bean
-    ExchangeRateHolder ExchangeRateHolder() {
-        ExchangeRate<BigDecimal> exchangeRate = new ExchangeRateRuEu(RU_EU.name(), BigDecimal.valueOf(78.9));
+    ExchangeRateHolder<BigDecimal> ExchangeRateHolder() {
+        ExchangeRate<BigDecimal> exchangeRate = new ExchangeRateRu(RU_EU.name(), BigDecimal.valueOf(78.9));
         return new ExchangeRateHolderImpl(exchangeRate);
     }
 
     @Bean
-    ExchangeRateGenerator ExchangeRateGenerator() {
+    ExchangeRateGenerator<BigDecimal> ExchangeRateGenerator() {
         return new ExchangeRateGeneratorImpl(65, 85);
     }
 
     @Bean
     ExchangeRate<BigDecimal> exchangeRate() {
-        return new ExchangeRateRuEu(RU_EU.name(), BigDecimal.valueOf(0));
+        return new ExchangeRateRu(RU_EU.name(), BigDecimal.valueOf(0));
     }
 
     @Bean

@@ -1,8 +1,7 @@
 package com.krootix.consumer;
 
-import com.krootix.model.ExchangeRate;
-import com.krootix.service.ExchangeRateGenerator;
-import com.krootix.service.ExchangeRateHolder;
+import com.krootix.common.model.ExchangeRate;
+import com.krootix.common.service.ExchangeRateHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
@@ -24,10 +23,10 @@ public class Consumer {
     private static final Logger logger = LoggerFactory.getLogger(Consumer.class);
 
     private final RabbitTemplate rabbitTemplate;
-    private final ExchangeRateHolder exchangeRateHolder;
+    private final ExchangeRateHolder<BigDecimal> exchangeRateHolder;
 
     @Autowired
-    public Consumer(RabbitTemplate rabbitTemplate, ExchangeRateHolder exchangeRateHolder, ExchangeRateGenerator exchangeRateGenerator) {
+    public Consumer(RabbitTemplate rabbitTemplate, ExchangeRateHolder<BigDecimal> exchangeRateHolder) {
         this.rabbitTemplate = rabbitTemplate;
         this.exchangeRateHolder = exchangeRateHolder;
     }

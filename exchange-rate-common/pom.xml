@@ -9,30 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>exchange-rate-consumer-ru-en</artifactId>
+    <artifactId>exchange-rate-common</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>com.krootix</groupId>
-            <artifactId>exchange-rate-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson-databind.version}</version>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
 

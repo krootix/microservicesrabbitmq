@@ -15,6 +15,7 @@
         <module>exchange-rate-producer</module>
         <module>exchange-rate-consumer-ru-en</module>
         <module>exchange-rate-consumer-ru-eu</module>
+        <module>exchange-rate-common</module>
     </modules>
 
     <groupId>com.krootix</groupId>
